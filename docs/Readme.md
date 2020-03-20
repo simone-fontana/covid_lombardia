@@ -17,7 +17,12 @@ I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civil
 
 ### Correlazione del numero dei nuovi contagiati e della crescita dei nuovi contagiati rispetto all'entrata in vigore delle misure restrittive
 
-| Provincia                  | Corr. nuovi casi | Corr. tasso crescita nuovi casi |
+La correlazione è stata calcolata come [Point Biserial Correlation](https://en.wikipedia.org/wiki/Point-biserial_correlation_coefficient)
+
+Non si nota nessuna significativa correlazione negativa tra l'entrata in vigore delle misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi.
+
+
+| Provincia             | Corr. nuovi casi | Corr. tasso crescita nuovi casi |
 |:----------------------|-----------:|-------------:|
 | Bergamo               |  0.835877  |    0.0236663 |
 | Brescia               |  0.825811  |    0.06318   |
@@ -34,9 +39,13 @@ I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civil
 
 
 
-### Correlazione del numero dei nuovi contagiati e della crescita dei nuovi contagiati rispetto ai giorni di distanza dall'entrata in vigore delle misure restrittive
+### Correlazione del numero dei nuovi contagiati e della crescita dei nuovi contagiati rispetto al numero di giorni in cui sono state in vigore le misure restrittive
 
-| Provincia                  |  Corr. nuovi casi | Corr. tasso crescita nuovi casi |
+La correlazione è stata calcolata come [Correlazione di Spearman](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient)
+
+Non si nota nessuna significativa correlazione negativa tra il numero di giorni di misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi.
+
+| Provincia             |  Corr. nuovi casi | Corr. tasso crescita nuovi casi |
 |:----------------------|-----------:|-------------:|
 | Bergamo               |  0.412587  |   0.160839   |
 | Brescia               |  0.58042   |  -0.125874   |
