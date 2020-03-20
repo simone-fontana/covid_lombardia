@@ -19,8 +19,14 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Generate pictures
+    - name: Generate pictures and tables
       run: |
         wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv
         wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv
         python covid_plot.py
+    - name: Upload picures 
+      uses: actions/upload-artifact@v1
+      with:
+        name: lombardia
+          path: docs/lombardia.svg
+      
