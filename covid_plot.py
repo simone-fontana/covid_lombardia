@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import datetime, math, pandas, sys
+import datetime, math, pandas, numpy, sys
+import scipy.stats
 
 
 def format_date_xaxis(axis):
@@ -8,13 +9,14 @@ def format_date_xaxis(axis):
     axis.xaxis.set_major_locator(mdates.DayLocator(interval=2))
     axis.grid(True)
 
-def draw_date_info(axis):
-    axis.axvline(datetime.datetime(2020, 3, 9), color='red', linestyle=':', label="Inizio misure restrittive")
+def draw_date_info(axis, inizio_misure):
+    axis.axvline(inizio_misure, color='red', linestyle=':', label="Inizio misure restrittive")
     axis.axvspan(datetime.datetime(2020, 3, 11), datetime.datetime(2020, 3, 22), ymin=0, ymax=1, alpha=0.1, color='green', label="Periodo di incubazione")
 
-dati_province = pandas.read_csv("COVID-19/dati-province/dpc-covid19-ita-province.csv")
+inizio_misure = datetime.datetime(2020, 3, 9)
+dati_province = pandas.read_csv("dpc-covid19-ita-province.csv")
 
-dati_lombardia = pandas.read_csv("COVID-19/dati-regioni/dpc-covid19-ita-regioni.csv")
+dati_lombardia = pandas.read_csv("dpc-covid19-ita-regioni.csv")
 dati_lombardia = dati_lombardia.loc[dati_lombardia["denominazione_regione"] ==
                                     "Lombardia"]
 
@@ -55,19 +57,33 @@ format_date_xaxis(ax_ospedale)
 #         "nuovi_attualmente_positivi", "dimessi_guariti", "deceduti",
 #         "totale_casi", "tamponi"].iteritems():
 #     dati_lombardia.plot(x='data', y=column_name)
-
-
+correlazioni = []
+print(f'provincia: correlazione :: p_value')
 for i, (provincia, group) in enumerate(province_lombardia):
 
     incrementi = group["totale_casi"].diff()
     dates = pandas.to_datetime(group['data'], format='%Y-%m-%d %H:%M:%S')
     ax_incrementi.plot(dates, incrementi, '.--', label=provincia)
     ax_totali.plot(dates, group["totale_casi"], '.--', label=provincia)
+    distanza_inizio_misure = (dates - inizio_misure).dt.total_seconds()
 
+    group['distanza_inizio_misure'] = distanza_inizio_misure
+    group['incrementi'] = incrementi
+    group['dopo'] = numpy.where(group["distanza_inizio_misure"] > 0, 1, 0)
+    print(group)
+    corr_dopo, p_value_dopo = scipy.stats.mstats.pointbiserialr(group['dopo'], group['incrementi'])
 
-draw_date_info(ax_ospedale)
-draw_date_info(ax_totali)
-draw_date_info(ax_incrementi)
+    group = group.loc[group['distanza_inizio_misure']>0]
+    corr_distanza, p_value_distanza = scipy.stats.mstats.pearsonr(group['distanza_inizio_misure'], group['incrementi'])
+    correlazioni.append({'prov':provincia, 'corr_dopo':corr_dopo, 'p_value_dopo':p_value_dopo, 'corr_distanza':corr_distanza, 'p_value_distanza':p_value_distanza})
+
+    # print(group.corr(method='spearman'))
+
+correlazioni = pandas.DataFrame(correlazioni)
+print(correlazioni)
+draw_date_info(ax_ospedale, inizio_misure)
+draw_date_info(ax_totali, inizio_misure)
+draw_date_info(ax_incrementi, inizio_misure)
 
 ax_incrementi.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
@@ -77,3 +93,4 @@ ax_ospedale.legend(loc='best', shadow=True, fontsize='medium')
 fig_lombardia.savefig("docs/lombardia.svg", format='svg')
 fig_incrementi.savefig("docs/incrementi.svg", format='svg')
 fig_totali.savefig("docs/totale.svg", format='svg')
+
