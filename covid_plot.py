@@ -80,7 +80,13 @@ for i, (provincia, group) in enumerate(province_lombardia):
     # print(group.corr(method='spearman'))
 
 correlazioni = pandas.DataFrame(correlazioni)
-print(correlazioni)
+
+with open("docs/corr_dopo.md ", "w") as corr_dopo_file:
+    corr_dopo_file.write(correlazioni[['prov','corr_dopo', 'p_value_dopo']].to_markdown())
+
+with open("docs/corr_distanza.md ", "w") as corr_dist_file:
+    corr_dist_file.write(correlazioni[['prov','corr_distanza', 'p_value_distanza']].to_markdown())
+    
 draw_date_info(ax_ospedale, inizio_misure)
 draw_date_info(ax_totali, inizio_misure)
 draw_date_info(ax_incrementi, inizio_misure)
