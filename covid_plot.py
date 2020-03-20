@@ -103,6 +103,8 @@ with open("docs/corr_distanza.md ", "w") as corr_dist_file:
 draw_date_info(ax_ospedale, inizio_misure)
 draw_date_info(ax_totali, inizio_misure)
 draw_date_info(ax_incrementi, inizio_misure)
+draw_date_info(ax_tasso, inizio_misure)
+
 
 ax_incrementi.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
