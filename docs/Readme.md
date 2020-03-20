@@ -16,10 +16,12 @@ I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civil
 ### Correlazione del numero dei nuovi contagiati rispetto all'entrata in vigore delle misure restrittive
 | Provincia | Correlazione |  p-value |
 | --- | --- | --- |
+
 {% include_relative corr_dopo.md %}
 
 ### Correlazione del numero dei nuovi contagiati rispetto ai giorni di distanza dall'entrata in vigore delle misure restrittive
 | Provincia | Correlazione |  p-value |
 | --- | --- | --- |
+
 {% include_relative corr_distanza.md %}
 
