@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import datetime, math, pandas, numpy, sys
+import datetime, math, pandas, numpy, sys, os
 import scipy.stats
 
 
@@ -14,8 +14,10 @@ def draw_date_info(axis, inizio_misure):
     axis.axvspan(datetime.datetime(2020, 3, 11), datetime.datetime(2020, 3, 22), ymin=0, ymax=1, alpha=0.1, color='green', label="Periodo di incubazione")
 
 inizio_misure = datetime.datetime(2020, 3, 9)
+os.system("wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv")
 dati_province = pandas.read_csv("dpc-covid19-ita-province.csv")
 
+os.system("        wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv")
 dati_lombardia = pandas.read_csv("dpc-covid19-ita-regioni.csv")
 dati_lombardia = dati_lombardia.loc[dati_lombardia["denominazione_regione"] ==
                                     "Lombardia"]
