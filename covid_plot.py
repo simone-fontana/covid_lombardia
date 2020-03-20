@@ -98,7 +98,7 @@ ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_ospedale.legend(loc='best', shadow=True, fontsize='medium')
 # plt.show()
 
-fig_lombardia.savefig("docs/lombardia.svg", format='svg')
-fig_incrementi.savefig("docs/incrementi.svg", format='svg')
-fig_totali.savefig("docs/totale.svg", format='svg')
+fig_lombardia.savefig("docs/lombardia.png", format='png', dpi=1200)
+fig_incrementi.savefig("docs/incrementi.png", format='png', dpi=1200)
+fig_totali.savefig("docs/totale.png", format='png', dpi=1200)
 
