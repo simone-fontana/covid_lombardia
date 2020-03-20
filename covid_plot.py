@@ -30,6 +30,7 @@ province_lombardia = province_lombardia[
 province_lombardia = province_lombardia.groupby("denominazione_provincia")
 
 fig_incrementi, ax_incrementi = plt.subplots()
+fig_tasso, ax_tasso = plt.subplots()
 fig_totali, ax_totali = plt.subplots()
 fig_lombardia, ax_ospedale = plt.subplots()
 
@@ -37,6 +38,8 @@ ax_incrementi.set_title(
     "Nuovi casi (differenza totale_casi rispetto al giorno precedente)")
 
 ax_totali.set_title("Casi totali")
+
+ax_tasso.set_title("Incremento dei nuovi casi rispetto al giorno precedente")
 
 dati_lombardia['data'] = pandas.to_datetime(dati_lombardia['data'],
                                             format='%Y-%m-%d %H:%M:%S')
@@ -57,7 +60,8 @@ format_date_xaxis(ax_ospedale)
 #         "nuovi_attualmente_positivi", "dimessi_guariti", "deceduti",
 #         "totale_casi", "tamponi"].iteritems():
 #     dati_lombardia.plot(x='data', y=column_name)
-correlazioni = []
+correlazioni_dopo = []
+correlazioni_distanza = []
 
 for i, (provincia, group) in enumerate(province_lombardia):
 
@@ -67,26 +71,34 @@ for i, (provincia, group) in enumerate(province_lombardia):
 
     group['distanza_inizio_misure'] = distanza_inizio_misure
     group['incrementi'] = incrementi
+    tasso_crescita = group['incrementi'].diff()
+    group['tasso_crescita'] = tasso_crescita
+
     group.plot(x='data', y='incrementi', ax=ax_incrementi, linestyle='--', marker='.', label=provincia)
     group.plot(x='data', y='totale_casi', ax=ax_totali, linestyle='--', marker='.', label=provincia)
+    group.plot(x='data', y='tasso_crescita', ax=ax_tasso, linestyle='--', marker='.', label=provincia )
+    
     group['dopo'] = numpy.where(group["distanza_inizio_misure"] > 0, 1, 0)
     
-    corr_dopo, p_value_dopo = scipy.stats.mstats.pointbiserialr(group['dopo'], group['incrementi'])
-
+    corr_dopo = group[['dopo','incrementi','tasso_crescita']].corr(method='pearson')
     group = group.loc[group['distanza_inizio_misure']>0]
-    corr_distanza, p_value_distanza = scipy.stats.mstats.pearsonr(group['distanza_inizio_misure'], group['incrementi'])
-    correlazioni.append({'prov':provincia, 'corr_dopo':corr_dopo, 'p_value_dopo':p_value_dopo, 'corr_distanza':corr_distanza, 'p_value_distanza':p_value_distanza})
+    corr_distanza = group[['distanza_inizio_misure', 'incrementi', 'tasso_crescita']].corr(method='spearman')
+    correlazioni_dopo.append({'prov':provincia, 'corr_inc':corr_dopo.iloc[0]['incrementi'], 'corr_tasso':corr_dopo.iloc[0]['tasso_crescita']})
+    correlazioni_distanza.append({'prov':provincia, 'corr_inc':corr_distanza.iloc[0]['incrementi'], 'corr_tasso':corr_distanza.iloc[0]['tasso_crescita']})
+
 
 format_date_xaxis(ax_incrementi)
 format_date_xaxis(ax_totali)
+format_date_xaxis(ax_tasso)
 
-correlazioni = pandas.DataFrame(correlazioni)
+correlazioni_dopo = pandas.DataFrame(correlazioni_dopo)
+correlazioni_distanza = pandas.DataFrame(correlazioni_distanza)
 
 with open("docs/corr_dopo.md ", "w") as corr_dopo_file:
-    corr_dopo_file.write(correlazioni[['prov','corr_dopo', 'p_value_dopo']].to_markdown(showindex=False))
+    corr_dopo_file.write(correlazioni_dopo[['prov','corr_inc', 'corr_tasso']].to_markdown(showindex=False))
 
 with open("docs/corr_distanza.md ", "w") as corr_dist_file:
-    corr_dist_file.write(correlazioni[['prov','corr_distanza', 'p_value_distanza']].to_markdown(showindex=False))
+    corr_dist_file.write(correlazioni_distanza[['prov','corr_inc', 'corr_tasso']].to_markdown(showindex=False))
     
 draw_date_info(ax_ospedale, inizio_misure)
 draw_date_info(ax_totali, inizio_misure)
@@ -97,12 +109,14 @@ ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_ospedale.legend(loc='best', shadow=True, fontsize='medium')
 # plt.show()
 
-fig_lombardia.set_size_inches(12, 6)
-fig_lombardia.savefig("docs/lombardia.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
+fig_lombardia.set_size_inches(12, 8)
+fig_lombardia.savefig("docs/lombardia.png", format='png', dpi=600, pad_inches=0.2, bbox_inches='tight')
 
-fig_incrementi.set_size_inches(12, 6)
-fig_incrementi.savefig("docs/incrementi.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
+fig_incrementi.set_size_inches(12, 8)
+fig_incrementi.savefig("docs/incrementi.png", format='png', dpi=600, pad_inches=0.2, bbox_inches='tight')
 
-fig_totali.set_size_inches(12, 6)
-fig_totali.savefig("docs/totale.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
+fig_totali.set_size_inches(12, 8)
+fig_totali.savefig("docs/totale.png", format='png', dpi=600, pad_inches=0.2, bbox_inches='tight')
 
+fig_tasso.set_size_inches(12, 8)
+fig_tasso.savefig("docs/tasso.png", format='png', dpi=600, pad_inches=0.2, bbox_inches='tight')
