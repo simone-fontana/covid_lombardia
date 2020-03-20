@@ -4,6 +4,9 @@
 I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civile](https://github.com/pcm-dpc/COVID-19) sotto licenza [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
 
 ## Dati complessivi Lombardia
+
+L'area verde mostra il possibile periodo di incubazione per un contagio avvenuto appena prima dell'entrata in vigore delle misure restrittive.
+
 ![Dati Lombardia](lombardia.png)
 
 ## Dati per provincia
