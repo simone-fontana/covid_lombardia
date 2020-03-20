@@ -22,7 +22,7 @@ L'area verde mostra il possibile periodo di incubazione per un contagio avvenuto
 
 La correlazione è stata calcolata come [Point Biserial Correlation](https://en.wikipedia.org/wiki/Point-biserial_correlation_coefficient)
 
-Non si nota nessuna significativa correlazione negativa tra l'entrata in vigore delle misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi.
+Non si nota nessuna significativa correlazione negativa tra l'entrata in vigore delle misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi. Ciò vuol dire che, purtroppo, le misure restrittive non hanno ancora sortito l'effetto desiderato. Si noti, tuttavia, come ci si trovi ancora nel possibile periodo di incubazione di contagiati prima delle misure restrittive.
 
 
 | Provincia             | Corr. nuovi casi | Corr. tasso crescita nuovi casi |
@@ -46,7 +46,7 @@ Non si nota nessuna significativa correlazione negativa tra l'entrata in vigore 
 
 La correlazione è stata calcolata come [Correlazione di Spearman](https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient)
 
-Non si nota nessuna significativa correlazione negativa tra il numero di giorni di misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi.
+Non si nota nessuna significativa correlazione negativa tra il numero di giorni di misure restrittive e il numero di nuovi casi o l'incremento di nuovi casi. Ciò vuol dire che, purtroppo, le misure restrittive non hanno ancora sortito l'effetto desiderato. Si noti, tuttavia, come ci si trovi ancora nel possibile periodo di incubazione di contagiati prima delle misure restrittive.
 
 | Provincia             |  Corr. nuovi casi | Corr. tasso crescita nuovi casi |
 |:----------------------|-----------:|-------------:|
