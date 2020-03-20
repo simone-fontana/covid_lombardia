@@ -4,5 +4,20 @@
 I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civile](https://github.com/pcm-dpc/COVID-19) sotto licenza [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
 
 ## Dati complessivi Lombardia
+![Dati Lombardia](docs/lombardia.svg)
 
 ## Dati per provincia
+![Nuovi Contagiati](docs/incrementi.svg)
+
+![Contagiati Totali](docs/totale.svg)
+
+## Correlazione
+
+### Correlazione del numero dei nuovi contagiati rispetto all'entrata in vigore delle misure restrittive
+| Provincia | Correlazione |  p-value |
+| --- | --- | --- |
+
+
+### Correlazione del numero dei nuovi contagiati rispetto ai giorni di distanza dall'entrata in vigore delle misure restrittive
+| Provincia | Correlazione |  p-value |
+| --- | --- | --- |
