@@ -6,7 +6,7 @@ import scipy.stats
 
 def format_date_xaxis(axis):
     axis.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m'))
-    axis.xaxis.set_major_locator(mdates.DayLocator(interval=2))
+    axis.xaxis.set_major_locator(mdates.DayLocator(interval=4))
     axis.grid(True)
 
 def draw_date_info(axis, inizio_misure):
@@ -14,10 +14,10 @@ def draw_date_info(axis, inizio_misure):
     axis.axvspan(datetime.datetime(2020, 3, 11), datetime.datetime(2020, 3, 22), ymin=0, ymax=1, alpha=0.1, color='green', label="Periodo di incubazione")
 
 inizio_misure = datetime.datetime(2020, 3, 9)
-os.system("wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv")
+os.system("wget -N https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-province/dpc-covid19-ita-province.csv")
 dati_province = pandas.read_csv("dpc-covid19-ita-province.csv")
 
-os.system("        wget https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv")
+os.system("wget -N https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-regioni/dpc-covid19-ita-regioni.csv")
 dati_lombardia = pandas.read_csv("dpc-covid19-ita-regioni.csv")
 dati_lombardia = dati_lombardia.loc[dati_lombardia["denominazione_regione"] ==
                                     "Lombardia"]
@@ -35,10 +35,8 @@ fig_lombardia, ax_ospedale = plt.subplots()
 
 ax_incrementi.set_title(
     "Nuovi casi (differenza totale_casi rispetto al giorno precedente)")
-format_date_xaxis(ax_incrementi)
 
 ax_totali.set_title("Casi totali")
-format_date_xaxis(ax_totali)
 
 dati_lombardia['data'] = pandas.to_datetime(dati_lombardia['data'],
                                             format='%Y-%m-%d %H:%M:%S')
@@ -60,34 +58,35 @@ format_date_xaxis(ax_ospedale)
 #         "totale_casi", "tamponi"].iteritems():
 #     dati_lombardia.plot(x='data', y=column_name)
 correlazioni = []
-print(f'provincia: correlazione :: p_value')
+
 for i, (provincia, group) in enumerate(province_lombardia):
 
     incrementi = group["totale_casi"].diff()
-    dates = pandas.to_datetime(group['data'], format='%Y-%m-%d %H:%M:%S')
-    ax_incrementi.plot(dates, incrementi, '.--', label=provincia)
-    ax_totali.plot(dates, group["totale_casi"], '.--', label=provincia)
-    distanza_inizio_misure = (dates - inizio_misure).dt.total_seconds()
+    group['data'] = pandas.to_datetime(group['data'], format='%Y-%m-%d %H:%M:%S')
+    distanza_inizio_misure = (group['data'] - inizio_misure).dt.total_seconds()
 
     group['distanza_inizio_misure'] = distanza_inizio_misure
     group['incrementi'] = incrementi
+    group.plot(x='data', y='incrementi', ax=ax_incrementi, linestyle='--', marker='.', label=provincia)
+    group.plot(x='data', y='totale_casi', ax=ax_totali, linestyle='--', marker='.', label=provincia)
     group['dopo'] = numpy.where(group["distanza_inizio_misure"] > 0, 1, 0)
-    print(group)
+    
     corr_dopo, p_value_dopo = scipy.stats.mstats.pointbiserialr(group['dopo'], group['incrementi'])
 
     group = group.loc[group['distanza_inizio_misure']>0]
     corr_distanza, p_value_distanza = scipy.stats.mstats.pearsonr(group['distanza_inizio_misure'], group['incrementi'])
     correlazioni.append({'prov':provincia, 'corr_dopo':corr_dopo, 'p_value_dopo':p_value_dopo, 'corr_distanza':corr_distanza, 'p_value_distanza':p_value_distanza})
 
-    # print(group.corr(method='spearman'))
+format_date_xaxis(ax_incrementi)
+format_date_xaxis(ax_totali)
 
 correlazioni = pandas.DataFrame(correlazioni)
 
 with open("docs/corr_dopo.md ", "w") as corr_dopo_file:
-    corr_dopo_file.write(correlazioni[['prov','corr_dopo', 'p_value_dopo']].to_markdown())
+    corr_dopo_file.write(correlazioni[['prov','corr_dopo', 'p_value_dopo']].to_markdown(showindex=False))
 
 with open("docs/corr_distanza.md ", "w") as corr_dist_file:
-    corr_dist_file.write(correlazioni[['prov','corr_distanza', 'p_value_distanza']].to_markdown())
+    corr_dist_file.write(correlazioni[['prov','corr_distanza', 'p_value_distanza']].to_markdown(showindex=False))
     
 draw_date_info(ax_ospedale, inizio_misure)
 draw_date_info(ax_totali, inizio_misure)
@@ -98,7 +97,12 @@ ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_ospedale.legend(loc='best', shadow=True, fontsize='medium')
 # plt.show()
 
-fig_lombardia.savefig("docs/lombardia.png", format='png', dpi=1200)
-fig_incrementi.savefig("docs/incrementi.png", format='png', dpi=1200)
-fig_totali.savefig("docs/totale.png", format='png', dpi=1200)
+fig_lombardia.set_size_inches(12, 6)
+fig_lombardia.savefig("docs/lombardia.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
+
+fig_incrementi.set_size_inches(12, 6)
+fig_incrementi.savefig("docs/incrementi.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
+
+fig_totali.set_size_inches(12, 6)
+fig_totali.savefig("docs/totale.png", format='png', dpi=600, pad_inches=0.05, bbox_inches='tight')
 
