@@ -1,1 +1,6 @@
 theme: jekyll-theme-minimal
+title: COVID-19 Lombardia
+description: Grafici e dati sull’epidemia di COVID-19 in Lombardia
+logo: virus-4918308_1920.png	
+show_downloads: "true"
+google_analytics: UA-161482505-1
