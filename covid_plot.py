@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import math, pandas, sys
+import datetime, math, pandas, sys
 
 
 def format_date_xaxis(axis):
@@ -8,6 +8,9 @@ def format_date_xaxis(axis):
     axis.xaxis.set_major_locator(mdates.DayLocator(interval=2))
     axis.grid(True)
 
+def draw_date_info(axis):
+    axis.axvline(datetime.datetime(2020, 3, 9), color='red', linestyle=':', label="Inizio misure restrittive")
+    axis.axvspan(datetime.datetime(2020, 3, 11), datetime.datetime(2020, 3, 22), ymin=0, ymax=1, alpha=0.1, color='green', label="Periodo di incubazione")
 
 dati_province = pandas.read_csv("COVID-19/dati-province/dpc-covid19-ita-province.csv")
 
@@ -60,6 +63,11 @@ for i, (provincia, group) in enumerate(province_lombardia):
     dates = pandas.to_datetime(group['data'], format='%Y-%m-%d %H:%M:%S')
     ax_incrementi.plot(dates, incrementi, '.--', label=provincia)
     ax_totali.plot(dates, group["totale_casi"], '.--', label=provincia)
+
+
+draw_date_info(ax_ospedale)
+draw_date_info(ax_totali)
+draw_date_info(ax_incrementi)
 
 ax_incrementi.legend(loc='upper left', shadow=True, fontsize='medium')
 ax_totali.legend(loc='upper left', shadow=True, fontsize='medium')
