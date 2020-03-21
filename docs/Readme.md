@@ -7,14 +7,14 @@ I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civil
 
 L'area verde mostra il possibile periodo di incubazione per un contagio avvenuto appena prima dell'entrata in vigore delle misure restrittive.
 
-![Dati Lombardia](lombardia.png)
+[![Dati Lombardia](lombardia.png)](lombardia.png)
 
 ## Dati per provincia
-![Nuovi Contagiati](incrementi.png)
+[![Nuovi Contagiati](incrementi.png)](incrementi.png)
 
-![Contagiati Totali](totale.png)
+[![Contagiati Totali](totale.png)](totale.png)
 
-![Tasso crescita](tasso.png)
+[![Tasso crescita](tasso.png)](tasso.png)
 
 ## Correlazione
 
