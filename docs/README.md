@@ -1,3 +1,8 @@
+---
+layout: page
+title: Ultimi grafici
+---
+
 # Grafici e analisi dati sull'epidemia di COVID-19 in Lombardia
 [![GitHub license](https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue)](https://github.com/pcm-dpc/COVID-19/blob/master/LICENSE)
 
@@ -7,14 +12,14 @@ I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civil
 
 L'area verde mostra il possibile periodo di incubazione per un contagio avvenuto appena prima dell'entrata in vigore delle misure restrittive.
 
-[![Dati Lombardia](lombardia.png)](lombardia.png)
+[![Dati Lombardia]({{ site.baseurl }}/images/lombardia.png)](lombardia.png)
 
 ## Dati per provincia
-[![Nuovi Contagiati](incrementi.png)](incrementi.png)
+[![Nuovi Contagiati]({{ site.baseurl }}/images/incrementi.png)](incrementi.png)
 
-[![Contagiati Totali](totale.png)](totale.png)
+[![Contagiati Totali]({{ site.baseurl }}/images/totale.png)](totale.png)
 
-[![Tasso crescita](tasso.png)](tasso.png)
+[![Tasso crescita]({{ site.baseurl }}/images/tasso.png)](tasso.png)
 
 ## Correlazione
 
