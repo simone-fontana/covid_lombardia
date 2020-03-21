@@ -1,4 +1,4 @@
-theme: jekyll-theme-minimal
+remote_theme: barryclark/jekyll-now
 title: COVID-19 Lombardia
 description: Grafici e dati sull’epidemia di COVID-19 in Lombardia
 logo: virus-4918308_1920.png	
