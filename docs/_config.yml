@@ -4,3 +4,5 @@ description: Grafici e dati sull’epidemia di COVID-19 in Lombardia
 logo: virus-4918308_1920.png	
 show_downloads: "true"
 google_analytics: UA-161482505-1
+
+theme: jekyll-theme-minimal
