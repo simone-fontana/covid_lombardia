@@ -18,12 +18,12 @@ I parametri della logistica sono stati ottenuti cercando di minimizzare la diffe
 
 Esistono diverse parametrizzazioni della Logistica Generalizzata. Quella usata è: $$ y(t) = A + \frac{K-A}{(C+Qe^{-B(t-M)})^\frac{1}{ \nu }} $$, dove $$ t $$ è il tempo, $$ y(t) $$ il numero di contagiati e $$ A, K, C, Q, B, M e \nu$$ i parametri da stimare. Il risultato è il seguente.
 
-[![Bergamo]({{ site.baseurl }}/images/bergamo_sigmoid.png)]({{ site.baseurl }}/images/Bergamo_sigmoid.png)
-[![Brescia]({{ site.baseurl }}/images/brescia_sigmoid.png)]({{ site.baseurl }}/images/Brescia_sigmoid.png)
+[![Bergamo]({{ site.baseurl }}/images/Bergamo_sigmoid.png)]({{ site.baseurl }}/images/Bergamo_sigmoid.png)
+[![Brescia]({{ site.baseurl }}/images/Brescia_sigmoid.png)]({{ site.baseurl }}/images/Brescia_sigmoid.png)
 
 Come si può notare, sia nel caso di Bergamo che nel caso di Brescia, dovremmo trovarci all'incirca nel momento in cui il totale dei contagiati dovrebbe iniziare a crescere più lentamente. Questo non vuol dire che il numero di nuovi contagiati crollerà drasticamente nei prossimi giorni, ma che, progressivamente, si dovrebbe assistere a un rallentamento della crescita, fino a un suo arrestarsi.
 
-[![Lodi]({{ site.baseurl }}/images/lodi_sigmoid.png)]({{ site.baseurl }}/images/Lodi_sigmoid.png)
+[![Lodi]({{ site.baseurl }}/images/Lodi_sigmoid.png)]({{ site.baseurl }}/images/Lodi_sigmoid.png)
 
 Il caso di Lodi è diverso. Fin da subito sono state prese delle drastiche misure per isolare i focolai di COVID-19. Per questo motivo il numero di contagiati è cresciuto linearmente anziché esponenzialmente. Nella figura viene mostrata una retta, ma, ovviamente, anche nel caso di Lodi la crescita si arresterà. L'algoritmo di ottimizzazione, però, non lo sa e, dato che non c'è ancora segno del rallentamento nei dati, ha preferito interpolare il tutto con una retta. Purtroppo, con i dati che abbiamo, non si può prevedere quando questo rallentamento avrà luogo.
 
