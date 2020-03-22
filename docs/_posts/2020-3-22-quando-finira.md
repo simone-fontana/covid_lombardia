@@ -4,6 +4,9 @@ title: Quando finirà?
 excerpt_separator: <!--more-->
 ---
 
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+
 Nel tentativo di capire qualcosa di più di dell'epidemia in Lombardia -  e anche per ammazzare la noia - ho provato ad analizzarne l'andamento nelle province più colpite: Bergamo, Brescia e Lodi.
 <!--more-->
 
