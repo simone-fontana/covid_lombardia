@@ -23,7 +23,7 @@ Il risultato è il seguente.
 [![Bergamo]({{ site.baseurl }}/images/Bergamo_sigmoid.png)]({{ site.baseurl }}/images/Bergamo_sigmoid.png)
 [![Brescia]({{ site.baseurl }}/images/Brescia_sigmoid.png)]({{ site.baseurl }}/images/Brescia_sigmoid.png)
 
-Come si può notare, sia nel caso di Bergamo che nel caso di Brescia, dovremmo trovarci all'incirca nel momento in cui il totale dei contagiati dovrebbe iniziare a crescere più lentamente. Questo non vuol dire che il numero di nuovi contagiati crollerà drasticamente nei prossimi giorni, ma che, progressivamente, si dovrebbe assistere a un rallentamento della crescita, fino a un suo arrestarsi.
+Come si può notare, sia nel caso di Bergamo che di Brescia, dovremmo trovarci all'incirca nel momento in cui il totale dei contagiati inizia a crescere più lentamente. Questo non vuol dire che il numero di nuovi contagiati crollerà drasticamente nei prossimi giorni, ma che, progressivamente, si dovrebbe assistere a un rallentamento della crescita, fino a un suo arrestarsi.
 
 [![Lodi]({{ site.baseurl }}/images/Lodi_sigmoid.png)]({{ site.baseurl }}/images/Lodi_sigmoid.png)
 
