@@ -29,6 +29,11 @@ Come si può notare, sia nel caso di Bergamo che di Brescia, dovremmo trovarci a
 
 Il caso di Lodi è diverso. Fin da subito sono state prese delle drastiche misure per isolare i focolai di COVID-19. Per questo motivo il numero di contagiati è cresciuto linearmente anziché esponenzialmente. Nella figura viene mostrata una retta, ma, ovviamente, anche nel caso di Lodi la crescita si arresterà. L'algoritmo di ottimizzazione, però, non lo sa e, dato che non c'è ancora segno del rallentamento nei dati, ha preferito interpolare il tutto con una retta. Purtroppo, con i dati che abbiamo, non si può prevedere quando questo rallentamento avrà luogo.
 
+Queste previsioni vanno però prese con le dovute cautele. Diversi fattori influenzano l'accuratezza della previsione:
+ - il modo in cui vengono identificati i contagiati non è uniforme nel tempo - è cambiato con l'avanzare dell'epidemia -, né nello spazio - in diverse aree si fanno tamponi con criteri diversi. Molti contagiati sono probabilmente asintomaitici e non conteggiati nelle statistiche;
+ - il rispetto delle misure restrittive o la futura introduzione di misure più o meno severe possono influenzare pesantamente l'andamento dell'epidemia;
+ - il modello usato è estremamente semplice ed esclusivamente fenomenologico.
+
 I grafici sono stati generati a partire dai dati forniti dalla [Protezione Civile](https://github.com/pcm-dpc/COVID-19) sotto licenza [CC-BY-4.0](https://creativecommons.org/licenses/by/4.0/deed.en)
 
 [![GitHub license](https://img.shields.io/badge/License-Creative%20Commons%20Attribution%204.0%20International-blue)](https://github.com/pcm-dpc/COVID-19/blob/master/LICENSE)
