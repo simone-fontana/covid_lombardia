@@ -4,19 +4,21 @@ title: Quando finirà?
 excerpt_separator: <!--more-->
 ---
 
-Nel tentativo di capire qualcosa di più di dell'epidemia in Lombardia -  e anche per ammazzare la noia - ho provato ad analizzarne l'andamento nelle province più colpite: Bergamo, Brescia e Lodi.
+Nel tentativo di capire qualcosa di più dell'epidemia in Lombardia -  e anche per ammazzare la noia - ho provato ad analizzarne l'andamento nelle province più colpite: Bergamo, Brescia e Lodi.
 <!--more-->
 
-Ho utilizzato una [Logistica Generalizzata](https://en.wikipedia.org/wiki/Generalised_logistic_function) per modellare l'andamento del numero di contagi rispetto al tempo, in modo da avere una previsione di come l'epidemia si evolverà.  
+Ho utilizzato una [Logistica Generalizzata](https://en.wikipedia.org/wiki/Generalised_logistic_function) per modellare l'andamento del numero totale di contagi rispetto al tempo, in modo da avere una previsione di come l'epidemia si evolverà.  
 
-In una prima fase si avrà una crescita esponenziale; questa fase non può, però, durare in eterno, in quanto il numero di possibili contagiati non può ovviamente superare l'intera popolazione. Dopo questa prima fase si avrà quindi un rallentamento della crescita. Questo rallentamento può essere dovuto a diversi fattori, come, ad esempio, all'introduzione di misure atte a limitare i contatti tra la popolazione o a una riduzione della popolazione più suscettibile alla malattia (per evidenti, tristi, motivi). 
+In una prima fase si avrà una crescita esponenziale; questa fase non può, però, durare in eterno, in quanto il numero di possibili contagiati non può ovviamente superare l'intera popolazione. Dopo questa prima fase si avrà quindi un rallentamento della crescita. Questo rallentamento può essere dovuto a diversi fattori, come, ad esempio, all'introduzione di misure atte a limitare i contatti o a una riduzione della popolazione più suscettibile alla malattia (per evidenti, tristi, motivi). 
 
 I parametri della logistica sono stati ottenuti cercando di minimizzare la differenza tra il modello e i dati finora raccolti (divisi per provincia), usando l'algoritmo [Levenberg–Marquardt](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm). 
 
 Esistono diverse parametrizzazioni della Logistica Generalizzata. Quella usata è: 
 ![Sigmoid]({{ site.baseurl }}/images/sigmoid.gif)
 
-dove `t` è il tempo, `y(t)` il numero di contagiati e `A, K, C, Q, B, M e ν` i parametri da stimare. Il risultato è il seguente.
+dove `t` è il tempo, `y(t)` il numero di contagiati e `A, K, C, Q, B, M e ν` i parametri da stimare. 
+
+Il risultato è il seguente.
 
 [![Bergamo]({{ site.baseurl }}/images/Bergamo_sigmoid.png)]({{ site.baseurl }}/images/Bergamo_sigmoid.png)
 [![Brescia]({{ site.baseurl }}/images/Brescia_sigmoid.png)]({{ site.baseurl }}/images/Brescia_sigmoid.png)

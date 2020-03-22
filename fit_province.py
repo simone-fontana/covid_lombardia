@@ -41,7 +41,7 @@ for i, (provincia, dati) in enumerate(province):
         ax.set_title(provincia)
         popolazione = popolazione_province[dati.iloc[0]['sigla_provincia']]
 
-        dati.plot(x='data', y='totale_casi', ax=ax, linestyle='--', marker='.', label='dati')
+        dati.plot(x='data', y='totale_casi', ax=ax, linestyle='--', marker='*', label='dati')
 
         x_data = mdates.date2num(dati['data'].to_numpy())
         y_data = dati['totale_casi'].to_numpy()
