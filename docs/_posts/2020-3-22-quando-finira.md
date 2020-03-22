@@ -14,9 +14,9 @@ In una prima fase si avrà una crescita esponenziale; questa fase non può, per�
 I parametri della logistica sono stati ottenuti cercando di minimizzare la differenza tra il modello e i dati finora raccolti (divisi per provincia), usando l'algoritmo [Levenberg–Marquardt](https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm). 
 
 Esistono diverse parametrizzazioni della Logistica Generalizzata. Quella usata è: 
-![Sigmoid]({{ site.baseurl }}/images/sigmoid.gif =100x)
+![Sigmoid]({{ site.baseurl }}/images/sigmoid.gif)
 
-dove `t` è il tempo, `y(t)` il numero di contagiati e `A, K, C, Q, B, M e $\nu$` i parametri da stimare. Il risultato è il seguente.
+dove `t` è il tempo, `y(t)` il numero di contagiati e `A, K, C, Q, B, M e ν` i parametri da stimare. Il risultato è il seguente.
 
 [![Bergamo]({{ site.baseurl }}/images/Bergamo_sigmoid.png)]({{ site.baseurl }}/images/Bergamo_sigmoid.png)
 [![Brescia]({{ site.baseurl }}/images/Brescia_sigmoid.png)]({{ site.baseurl }}/images/Brescia_sigmoid.png)
